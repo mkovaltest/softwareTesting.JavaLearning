@@ -9,7 +9,7 @@ public class Task2 {
     System.out.println("Метод:");
     Point p3 = new Point(4, 7);
     Point p4 = new Point(-2, 0);
-    System.out.println("Расстояние между точкой p3 с координатами " + p3.x + "," + p3.y + " и точкой p4 с координатами " + p4.x + "," + p4.y + " = " + p3.distance(p3, p4));
+    System.out.println("Расстояние между точкой p3 с координатами " + p3.x + "," + p3.y + " и точкой p4 с координатами " + p4.x + "," + p4.y + " = " + p3.distance(p4));
   }
 
   public static double distance(Point p1, Point p2) {
