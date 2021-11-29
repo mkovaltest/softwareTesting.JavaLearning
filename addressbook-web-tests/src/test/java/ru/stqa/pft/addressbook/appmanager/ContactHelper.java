@@ -33,4 +33,24 @@ public class ContactHelper extends HelperBase{
   public void returnToAddressCreation() {
     click(By.linkText("home page"));
   }
+
+  public void selectAddress() {
+    click(By.name("selected[]"));
+  }
+
+  public void deleteSelectedAddress() {
+    click(By.xpath("//input[@value='Delete']"));
+  }
+
+  public void closeAddressDeletionAlert() {
+    wd.switchTo().alert().accept();
+  }
+
+  public void initAddressModification() {
+    click(By.xpath("//img[@alt='Edit']"));
+  }
+
+  public void submitAddressModification() {
+    click(By.name("update"));
+  }
 }
