@@ -57,4 +57,15 @@ public class ContactHelper extends HelperBase{
   public void submitAddressModification() {
     click(By.name("update"));
   }
+
+  public void createContact(AddressData contact, boolean creation) {
+    initAddressCreation();
+    fillAddressForm(contact, creation);
+    submitAddressCreation();
+    new NavigationHelper(wd).gotoHomePage();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
+  }
 }

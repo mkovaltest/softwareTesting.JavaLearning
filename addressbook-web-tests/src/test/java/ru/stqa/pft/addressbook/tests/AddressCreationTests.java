@@ -7,9 +7,6 @@ public class AddressCreationTests extends TestBase {
 
   @Test
   public void testAddressCreation() {
-    app.getContactHelper().initAddressCreation();
-    app.getContactHelper().fillAddressForm(new AddressData("Michael", "Koval", "Hors68", "tester", "Cinimex", "Voronej", "123", "456", "mail@mail.ru", "test1"), true);
-    app.getContactHelper().submitAddressCreation();
-    app.getNavigationHelper().gotoHomePage();
+    app.getContactHelper().createContact(new AddressData("Michael", "Koval", "Hors68", "tester", "Cinimex", "Voronej", "123", "456", "mail@mail.ru", "test1"), true);
   }
 }
