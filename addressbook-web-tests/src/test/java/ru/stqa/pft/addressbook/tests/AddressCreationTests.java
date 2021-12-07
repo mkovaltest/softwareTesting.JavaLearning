@@ -10,6 +10,6 @@ public class AddressCreationTests extends TestBase {
     app.getContactHelper().initAddressCreation();
     app.getContactHelper().fillAddressForm(new AddressData("Michael", "Koval", "Hors68", "tester", "Cinimex", "Voronej", "123", "456", "mail@mail.ru", "test1"), true);
     app.getContactHelper().submitAddressCreation();
-    app.getContactHelper().returnToAddressCreation();
+    app.getNavigationHelper().gotoHomePage();
   }
 }

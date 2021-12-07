@@ -38,10 +38,6 @@ public class ContactHelper extends HelperBase{
     }
   }
 
-  public void returnToAddressCreation() {
-    click(By.linkText("home page"));
-  }
-
   public void selectAddress() {
     click(By.name("selected[]"));
   }
