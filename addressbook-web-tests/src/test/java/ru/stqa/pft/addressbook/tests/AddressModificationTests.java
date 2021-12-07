@@ -9,7 +9,7 @@ public class AddressModificationTests extends TestBase{
   public void testAddressModification() {
     app.getContactHelper().selectAddress();
     app.getContactHelper().initAddressModification();
-    app.getContactHelper().fillAddressForm(new AddressData("Michael_edited", "Koval_edited", "Hors68_edited", "tester_edited", "Cinimex_edited", "Voronej_edited", "123_edited", "456_edited", "mail_edited@mail.ru"));
+    app.getContactHelper().fillAddressForm(new AddressData("Michael_edited", "Koval_edited", "Hors68_edited", "tester_edited", "Cinimex_edited", "Voronej_edited", "123_edited", "456_edited", "mail_edited@mail.ru", null), false);
     app.getContactHelper().submitAddressModification();
   }
 }
