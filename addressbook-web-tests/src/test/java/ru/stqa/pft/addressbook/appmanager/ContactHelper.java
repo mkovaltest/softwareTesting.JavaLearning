@@ -1,10 +1,12 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.AddressData;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 public class ContactHelper extends HelperBase{
 
@@ -17,10 +19,15 @@ public class ContactHelper extends HelperBase{
   }
 
   public void submitAddressCreation() {
-    click(By.xpath("//div[@id='content']/form/input[21]"));
+    click(By.name("submit"));
   }
 
   public void fillAddressForm(AddressData addressData, boolean creation) {
+    if (creation) {
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(addressData.getGroup());
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }
     type(By.name("firstname"), addressData.getFirstname());
     type(By.name("lastname"), addressData.getLastname());
     type(By.name("nickname"), addressData.getNickname());
@@ -30,12 +37,6 @@ public class ContactHelper extends HelperBase{
     type(By.name("mobile"), addressData.getMobilephone());
     type(By.name("work"), addressData.getWorkphone());
     type(By.name("email"), addressData.getEmail());
-
-    if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(addressData.getGroup());
-    } else {
-      Assert.assertFalse(isElementPresent(By.name("new_group")));
-    }
   }
 
   public void selectAddress() {
@@ -60,7 +61,14 @@ public class ContactHelper extends HelperBase{
 
   public void createContact(AddressData contact, boolean creation) {
     initAddressCreation();
-    fillAddressForm(contact, creation);
+    try {
+      fillAddressForm(contact, creation);
+    } catch (NoSuchElementException e) {
+      new NavigationHelper(wd).gotoGroupPage();
+      new GroupHelper(wd).createGroup(new GroupData(contact.getGroup(), null, null));
+      initAddressCreation();
+      fillAddressForm(contact, creation);
+    }
     submitAddressCreation();
     new NavigationHelper(wd).gotoHomePage();
   }
