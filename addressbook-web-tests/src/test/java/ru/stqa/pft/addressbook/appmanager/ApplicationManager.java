@@ -28,8 +28,7 @@ public class ApplicationManager {
     } else if (browser.equals(Browser.IE.browserName())){
       wd = new InternetExplorerDriver();
     }
-
-    wd = new ChromeDriver();
+    
     wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/");
     groupHelper = new GroupHelper(wd);
