@@ -8,7 +8,7 @@ public class AddressModificationTests extends TestBase{
   @Test
   public void testAddressModification() {
     if (!app.getContactHelper().isThereAContact()) {
-      app.getContactHelper().createContact(new AddressData("Michael", "Koval", "Hors68", "tester", "Cinimex", "Voronej", "123", "456", "mail@mail.ru", "test1"), true);
+      app.getContactHelper().createContact(new AddressData("Michael", "Koval", "Hors68", "tester", "Cinimex", "Voronej", "123", "456", "mail@mail.ru", "test1"));
     }
     app.getContactHelper().selectAddress();
     app.getContactHelper().initAddressModification();

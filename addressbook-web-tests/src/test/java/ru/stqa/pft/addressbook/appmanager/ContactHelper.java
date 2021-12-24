@@ -39,6 +39,19 @@ public class ContactHelper extends HelperBase{
     type(By.name("email"), addressData.getEmail());
   }
 
+  public void fillAddressForm(AddressData addressData) {
+    new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(addressData.getGroup());
+    type(By.name("firstname"), addressData.getFirstname());
+    type(By.name("lastname"), addressData.getLastname());
+    type(By.name("nickname"), addressData.getNickname());
+    type(By.name("title"), addressData.getTitle());
+    type(By.name("company"), addressData.getCompany());
+    type(By.name("address"), addressData.getAddress());
+    type(By.name("mobile"), addressData.getMobilephone());
+    type(By.name("work"), addressData.getWorkphone());
+    type(By.name("email"), addressData.getEmail());
+  }
+
   public void selectAddress() {
     click(By.name("selected[]"));
   }
@@ -59,15 +72,15 @@ public class ContactHelper extends HelperBase{
     click(By.name("update"));
   }
 
-  public void createContact(AddressData contact, boolean creation) {
+  public void createContact(AddressData contact) {
     initAddressCreation();
     try {
-      fillAddressForm(contact, creation);
+      fillAddressForm(contact);
     } catch (NoSuchElementException e) {
       new NavigationHelper(wd).gotoGroupPage();
       new GroupHelper(wd).createGroup(new GroupData(contact.getGroup(), null, null));
       initAddressCreation();
-      fillAddressForm(contact, creation);
+      fillAddressForm(contact);
     }
     submitAddressCreation();
     new NavigationHelper(wd).gotoHomePage();
