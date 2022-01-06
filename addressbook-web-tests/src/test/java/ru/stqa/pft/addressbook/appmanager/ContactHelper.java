@@ -81,8 +81,8 @@ public class ContactHelper extends HelperBase{
     try {
       fillAddressForm(contact);
     } catch (NoSuchElementException e) {
-      new NavigationHelper(wd).gotoGroupPage();
-      new GroupHelper(wd).createGroup(new GroupData(contact.getGroup(), null, null));
+      new NavigationHelper(wd).groupPage();
+      new GroupHelper(wd).create(new GroupData(contact.getGroup(), null, null));
       initAddressCreation();
       fillAddressForm(contact);
     }

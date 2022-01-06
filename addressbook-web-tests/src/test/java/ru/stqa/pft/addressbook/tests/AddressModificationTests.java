@@ -19,7 +19,7 @@ public class AddressModificationTests extends TestBase{
     AddressData address = new AddressData("Michael_edited", "Koval_edited", "Hors68_edited", "tester_edited", "Cinimex_edited", "Voronej_edited", "123_edited", "456_edited", "mail_edited@mail.ru", null);
     app.getContactHelper().fillAddressForm(address, false);
     app.getContactHelper().submitAddressModification();
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     List<AddressData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size());
     before.remove(before.size() - 1);
