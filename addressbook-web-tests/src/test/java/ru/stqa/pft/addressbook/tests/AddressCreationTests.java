@@ -9,7 +9,7 @@ import java.util.List;
 
 public class AddressCreationTests extends TestBase {
 
-  @Test
+  @Test (enabled = false)
   public void testAddressCreation() {
     List<AddressData> before = app.getContactHelper().getContactList();
     AddressData address = new AddressData("Michael", "Koval", "Hors68", "tester", "Cinimex", "Voronej", "123", "456", "mail@mail.ru", "test1");

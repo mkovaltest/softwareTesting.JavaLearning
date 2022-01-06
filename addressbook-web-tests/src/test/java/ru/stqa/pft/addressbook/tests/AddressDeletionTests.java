@@ -8,7 +8,7 @@ import java.util.List;
 
 public class AddressDeletionTests extends TestBase{
 
-  @Test
+  @Test (enabled = false)
   public void testAddressDeletion() {
     if (!app.getContactHelper().isThereAContact()) {
       app.getContactHelper().createContact(new AddressData("Michael", "Koval", "Hors68", "tester", "Cinimex", "Voronej", "123", "456", "mail@mail.ru", "test1"));
