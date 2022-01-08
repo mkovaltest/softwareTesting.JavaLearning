@@ -90,6 +90,17 @@ public class ContactHelper extends HelperBase{
     new NavigationHelper(wd).gotoHomePage();
   }
 
+  public int findMinId (){
+    List<AddressData> after = getContactList();
+    int min = Integer.MAX_VALUE;
+    for (AddressData c: after){
+      if (c.getId() < min){
+        min = c.getId();
+      }
+    }
+    return min;
+  }
+
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
   }

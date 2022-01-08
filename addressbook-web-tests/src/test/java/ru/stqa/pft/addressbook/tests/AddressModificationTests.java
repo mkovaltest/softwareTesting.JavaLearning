@@ -9,7 +9,7 @@ import java.util.List;
 
 public class AddressModificationTests extends TestBase{
 
-  @Test (enabled = false)
+  @Test (enabled = true)
   public void testAddressModification() {
     if (!app.getContactHelper().isThereAContact()) {
       app.getContactHelper().createContact(new AddressData("Michael", "Koval", "Hors68", "tester", "Cinimex", "Voronej", "123", "456", "mail@mail.ru", "test1"));
@@ -23,6 +23,7 @@ public class AddressModificationTests extends TestBase{
     List<AddressData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size());
     before.remove(before.size() - 1);
+    address.setId(app.getContactHelper().findMinId());
     before.add(address);
     Comparator<AddressData> byId = Comparator.comparingInt(AddressData::getId);
     before.sort(byId);
