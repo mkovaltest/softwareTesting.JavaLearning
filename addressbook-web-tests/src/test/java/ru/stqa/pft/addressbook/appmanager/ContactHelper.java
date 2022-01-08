@@ -82,7 +82,7 @@ public class ContactHelper extends HelperBase{
       fillAddressForm(contact);
     } catch (NoSuchElementException e) {
       new NavigationHelper(wd).groupPage();
-      new GroupHelper(wd).create(new GroupData(contact.getGroup(), null, null));
+      new GroupHelper(wd).create(new GroupData().withName(contact.getGroup()));
       initAddressCreation();
       fillAddressForm(contact);
     }
