@@ -10,6 +10,7 @@ public class AddressData {
   private String title;
   private String company;
   private String address;
+  private String homephone;
   private String mobilephone;
   private String workphone;
   private String email;
@@ -47,6 +48,11 @@ public class AddressData {
 
   public AddressData withAddress(String address) {
     this.address = address;
+    return this;
+  }
+
+  public AddressData withHomephone(String homephone) {
+    this.homephone = homephone;
     return this;
   }
 
@@ -96,6 +102,10 @@ public class AddressData {
 
   public String getAddress() {
     return address;
+  }
+
+  public String getHomephone() {
+    return homephone;
   }
 
   public String getMobilephone() {
