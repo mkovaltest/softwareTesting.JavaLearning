@@ -29,8 +29,6 @@ public class AddressData {
     this.group = group;
   }
 
-
-
   public AddressData(int id, String firstname, String lastname, String nickname, String title, String company, String address, String mobilephone, String workphone, String email, String group) {
     this.id = id;
     this.firstname = firstname;

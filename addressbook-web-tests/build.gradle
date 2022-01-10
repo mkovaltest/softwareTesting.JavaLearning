@@ -5,10 +5,9 @@ repositories {
 }
 
 dependencies {
-    // https://mvnrepository.com/artifact/org.testng/testng
-    testImplementation group: 'org.testng', name: 'testng', version: '7.4.0'
-    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
-    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.1.0'
+    testImplementation group: 'org.testng', name: 'testng', version: '7.5'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.1.1'
+    testImplementation group: 'org.hamcrest', name: 'hamcrest', version: '2.2'
 
     test {
         useTestNG()
