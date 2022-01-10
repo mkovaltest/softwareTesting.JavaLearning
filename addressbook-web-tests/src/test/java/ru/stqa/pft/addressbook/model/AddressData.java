@@ -13,6 +13,7 @@ public class AddressData {
   private String homephone;
   private String mobilephone;
   private String workphone;
+  private String allphones;
   private String email;
   private String group;
 
@@ -74,6 +75,15 @@ public class AddressData {
   public AddressData withGroup(String group) {
     this.group = group;
     return this;
+  }
+
+  public AddressData withAllphones(String allphones) {
+    this.allphones = allphones;
+    return this;
+  }
+
+  public String getAllphones() {
+    return allphones;
   }
 
   public int getId() {
