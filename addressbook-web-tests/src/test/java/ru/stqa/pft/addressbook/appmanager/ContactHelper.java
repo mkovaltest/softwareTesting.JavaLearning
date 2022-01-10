@@ -7,9 +7,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.AddressData;
+import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ContactHelper extends HelperBase{
@@ -56,8 +56,8 @@ public class ContactHelper extends HelperBase{
     type(By.name("email"), addressData.getEmail());
   }
 
-  public void selectAddress(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
+  public void selectAddressById(int id) {
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
   public void deleteSelectedAddress() {
@@ -68,8 +68,8 @@ public class ContactHelper extends HelperBase{
     wd.switchTo().alert().accept();
   }
 
-  public void initAddressModification(int index) {
-    wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
+  public void initAddressModificationById(int id) {
+    wd.findElement(By.cssSelector("a[href='edit.php?id=" + id + "']")).click();
   }
 
   public void submitAddressModification() {
@@ -87,33 +87,33 @@ public class ContactHelper extends HelperBase{
       fillAddressForm(contact);
     }
     submitAddressCreation();
-    new NavigationHelper(wd).gotoHomePage();
   }
 
-  public int findMinId (){
-    List<AddressData> after = getContactList();
-    int min = Integer.MAX_VALUE;
-    for (AddressData c: after){
-      if (c.getId() < min){
-        min = c.getId();
-      }
-    }
-    return min;
+  public void modify(AddressData address) {
+    initAddressModificationById(address.getId());
+    fillAddressForm(address, false);
+    submitAddressModification();
+  }
+
+  public void delete(AddressData address) {
+    selectAddressById(address.getId());
+    deleteSelectedAddress();
+    closeAddressDeletionAlert();
   }
 
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public List<AddressData> getContactList() {
-    List<AddressData> contacts = new ArrayList<>();
+  public Contacts all() {
+    Contacts contacts = new Contacts();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
       List<WebElement> cells = element.findElements(By.tagName("td"));
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("id"));
       String lastname = cells.get(1).getText();
       String firstname = cells.get(2).getText();
-      AddressData contact = new AddressData(id, firstname, lastname, null, null, null,null,null,null,null, null);
+      AddressData contact = new AddressData().withId(id).withFirstname(firstname).withLastname(lastname);
       contacts.add(contact);
     }
     return contacts;

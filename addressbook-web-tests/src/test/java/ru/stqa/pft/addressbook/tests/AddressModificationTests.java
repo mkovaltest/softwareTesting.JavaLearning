@@ -1,33 +1,34 @@
 package ru.stqa.pft.addressbook.tests;
-
-import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.AddressData;
+import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.Comparator;
-import java.util.List;
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class AddressModificationTests extends TestBase{
 
+  @BeforeMethod
+  public void ensurePreconditions() {
+    if (app.contact().all().size() == 0) {
+      app.contact().createContact(new AddressData()
+              .withFirstname("Michael").withLastname("Koval").withNickname("Hors68").withTitle("tester").withCompany("Cinimex").withAddress("Voronej")
+              .withMobilephone("123").withWorkphone("456").withEmail("mail@mail.ru").withGroup("test1"));
+    }
+  }
+
   @Test (enabled = true)
   public void testAddressModification() {
-    if (!app.getContactHelper().isThereAContact()) {
-      app.getContactHelper().createContact(new AddressData("Michael", "Koval", "Hors68", "tester", "Cinimex", "Voronej", "123", "456", "mail@mail.ru", "test1"));
-    }
-    List<AddressData> before = app.getContactHelper().getContactList();
-    app.getContactHelper().initAddressModification(before.size() - 1);
-    AddressData address = new AddressData("Michael_edited", "Koval_edited", "Hors68_edited", "tester_edited", "Cinimex_edited", "Voronej_edited", "123_edited", "456_edited", "mail_edited@mail.ru", null);
-    app.getContactHelper().fillAddressForm(address, false);
-    app.getContactHelper().submitAddressModification();
+    Contacts before = app.contact().all();
+    AddressData modifiedContact = before.iterator().next();
+    AddressData address = new AddressData()
+            .withId(modifiedContact.getId()).withFirstname("Michael_edited").withLastname("Koval_edited").withNickname("Hors68_edited").withTitle("tester_edited")
+            .withCompany("Cinimex_edited").withAddress("Voronej_edited").withMobilephone("123_edited").withWorkphone("456_edited").withEmail("mail_edited@mail.ru");
+    app.contact().modify(address);
     app.goTo().gotoHomePage();
-    List<AddressData> after = app.getContactHelper().getContactList();
-    Assert.assertEquals(after.size(), before.size());
-    before.remove(before.size() - 1);
-    address.setId(app.getContactHelper().findMinId());
-    before.add(address);
-    Comparator<AddressData> byId = Comparator.comparingInt(AddressData::getId);
-    before.sort(byId);
-    after.sort(byId);
-    Assert.assertEquals(before, after);
+    Contacts after = app.contact().all();
+    assertThat(after.size(), equalTo(before.size()));
+    assertThat(after, equalTo(before.without(modifiedContact).withAdded(address)));
   }
 }

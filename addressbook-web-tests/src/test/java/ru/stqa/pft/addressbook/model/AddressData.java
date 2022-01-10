@@ -3,48 +3,71 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class AddressData {
-  private int id;
-  private final String firstname;
-  private final String lastname;
-  private final String nickname;
-  private final String title;
-  private final String company;
-  private final String address;
-  private final String mobilephone;
-  private final String workphone;
-  private final String email;
-  private final String group;
+  private int id = Integer.MAX_VALUE;
+  private String firstname;
+  private String lastname;
+  private String nickname;
+  private String title;
+  private String company;
+  private String address;
+  private String mobilephone;
+  private String workphone;
+  private String email;
+  private String group;
 
-  public AddressData(String firstname, String lastname, String nickname, String title, String company, String address, String mobilephone, String workphone, String email, String group) {
-    this.id = Integer.MAX_VALUE;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.nickname = nickname;
-    this.title = title;
-    this.company = company;
-    this.address = address;
-    this.mobilephone = mobilephone;
-    this.workphone = workphone;
-    this.email = email;
-    this.group = group;
+  public AddressData withId(int id) {
+    this.id = id;
+    return this;
   }
 
-  public AddressData(int id, String firstname, String lastname, String nickname, String title, String company, String address, String mobilephone, String workphone, String email, String group) {
-    this.id = id;
+  public AddressData withFirstname(String firstname) {
     this.firstname = firstname;
-    this.lastname = lastname;
-    this.nickname = nickname;
-    this.title = title;
-    this.company = company;
-    this.address = address;
-    this.mobilephone = mobilephone;
-    this.workphone = workphone;
-    this.email = email;
-    this.group = group;
+    return this;
   }
 
-  public void setId(int id) {
-    this.id = id;
+  public AddressData withLastname(String lastname) {
+    this.lastname = lastname;
+    return this;
+  }
+
+  public AddressData withNickname(String nickname) {
+    this.nickname = nickname;
+    return this;
+  }
+
+  public AddressData withTitle(String title) {
+    this.title = title;
+    return this;
+  }
+
+  public AddressData withCompany(String company) {
+    this.company = company;
+    return this;
+  }
+
+  public AddressData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public AddressData withMobilephone(String mobilephone) {
+    this.mobilephone = mobilephone;
+    return this;
+  }
+
+  public AddressData withWorkphone(String workphone) {
+    this.workphone = workphone;
+    return this;
+  }
+
+  public AddressData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public AddressData withGroup(String group) {
+    this.group = group;
+    return this;
   }
 
   public int getId() {
@@ -96,12 +119,12 @@ public class AddressData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     AddressData that = (AddressData) o;
-    return Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname);
+    return id == that.id && Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(firstname, lastname);
+    return Objects.hash(id, firstname, lastname);
   }
 
   @Override
