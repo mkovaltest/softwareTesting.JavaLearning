@@ -41,6 +41,7 @@ public class ContactHelper extends HelperBase{
     type(By.name("mobile"), addressData.getMobilephone());
     type(By.name("work"), addressData.getWorkphone());
     type(By.name("email"), addressData.getEmail());
+    attach(By.name("photo"), addressData.getPhoto());
   }
 
   public void fillAddressForm(AddressData addressData) {
@@ -54,6 +55,7 @@ public class ContactHelper extends HelperBase{
     type(By.name("mobile"), addressData.getMobilephone());
     type(By.name("work"), addressData.getWorkphone());
     type(By.name("email"), addressData.getEmail());
+    attach(By.name("photo"), addressData.getPhoto());
   }
 
   public void selectAddressById(int id) {
