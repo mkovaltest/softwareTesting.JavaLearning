@@ -15,6 +15,10 @@ public class AddressData {
   private String workphone;
   private String allphones;
   private String email;
+  private String allemails;
+  private String email1;
+  private String email2;
+  private String email3;
   private String group;
 
   public AddressData withId(int id) {
@@ -80,6 +84,42 @@ public class AddressData {
   public AddressData withAllphones(String allphones) {
     this.allphones = allphones;
     return this;
+  }
+
+  public AddressData withAllemails(String allemails) {
+    this.allemails = allemails;
+    return this;
+  }
+
+  public AddressData withEmail1(String email1) {
+    this.email1 = email1;
+    return this;
+  }
+
+  public AddressData withEmail2(String email2) {
+    this.email2 = email2;
+    return this;
+  }
+
+  public AddressData withEmail3(String email3) {
+    this.email3 = email3;
+    return this;
+  }
+
+  public String getAllemails() {
+    return allemails;
+  }
+
+  public String getEmail1() {
+    return email1;
+  }
+
+  public String getEmail2() {
+    return email2;
+  }
+
+  public String getEmail3() {
+    return email3;
   }
 
   public String getAllphones() {
@@ -152,6 +192,9 @@ public class AddressData {
     return "AddressData{" +
             "firstname='" + firstname + '\'' +
             ", lastname='" + lastname + '\'' +
+            ", address='" + address + '\'' +
+            ", allphones='" + allphones + '\'' +
+            ", allemails='" + allemails + '\'' +
             '}';
   }
 }
