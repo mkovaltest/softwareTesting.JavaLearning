@@ -1,7 +1,7 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.Test;
-import ru.stqa.pft.addressbook.model.AddressData;
+import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.io.File;
@@ -9,13 +9,13 @@ import java.io.File;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 
-public class AddressCreationTests extends TestBase {
+public class ContactCreationTests extends TestBase {
 
   @Test (enabled = true)
   public void testAddressCreation() {
     Contacts before = app.contact().all();
     File photo = new File("src/test/resources/stru.png");
-    AddressData address = new AddressData()
+    ContactData address = new ContactData()
             .withFirstname("Michael").withLastname("Koval").withNickname("Hors68").withTitle("tester").withCompany("Cinimex").withAddress("Voronej")
             .withMobilephone("123").withWorkphone("456").withEmail("mail@mail.ru").withGroup("test1").withPhoto(photo);
     app.contact().createContact(address);

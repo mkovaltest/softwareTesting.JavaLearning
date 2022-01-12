@@ -3,7 +3,7 @@ package ru.stqa.pft.addressbook.model;
 import java.io.File;
 import java.util.Objects;
 
-public class AddressData {
+public class ContactData {
   private int id = Integer.MAX_VALUE;
   private String firstname;
   private String lastname;
@@ -14,6 +14,7 @@ public class AddressData {
   private String homephone;
   private String mobilephone;
   private String workphone;
+  private String secondphone;
   private String allphones;
   private String email;
   private String allemails;
@@ -23,94 +24,103 @@ public class AddressData {
   private String group;
   private File photo;
 
-  public AddressData withId(int id) {
+  public ContactData withId(int id) {
     this.id = id;
     return this;
   }
 
-  public AddressData withFirstname(String firstname) {
+  public ContactData withFirstname(String firstname) {
     this.firstname = firstname;
     return this;
   }
 
-  public AddressData withLastname(String lastname) {
+  public ContactData withLastname(String lastname) {
     this.lastname = lastname;
     return this;
   }
 
-  public AddressData withNickname(String nickname) {
+  public ContactData withNickname(String nickname) {
     this.nickname = nickname;
     return this;
   }
 
-  public AddressData withTitle(String title) {
+  public ContactData withTitle(String title) {
     this.title = title;
     return this;
   }
 
-  public AddressData withCompany(String company) {
+  public ContactData withCompany(String company) {
     this.company = company;
     return this;
   }
 
-  public AddressData withAddress(String address) {
+  public ContactData withAddress(String address) {
     this.address = address;
     return this;
   }
 
-  public AddressData withHomephone(String homephone) {
+  public ContactData withHomephone(String homephone) {
     this.homephone = homephone;
     return this;
   }
 
-  public AddressData withMobilephone(String mobilephone) {
+  public ContactData withMobilephone(String mobilephone) {
     this.mobilephone = mobilephone;
     return this;
   }
 
-  public AddressData withWorkphone(String workphone) {
+  public ContactData withWorkphone(String workphone) {
     this.workphone = workphone;
     return this;
   }
 
-  public AddressData withEmail(String email) {
+  public ContactData withEmail(String email) {
     this.email = email;
     return this;
   }
 
-  public AddressData withGroup(String group) {
+  public ContactData withGroup(String group) {
     this.group = group;
     return this;
   }
 
-  public AddressData withAllphones(String allphones) {
+  public ContactData withAllphones(String allphones) {
     this.allphones = allphones;
     return this;
   }
 
-  public AddressData withAllemails(String allemails) {
+  public ContactData withAllemails(String allemails) {
     this.allemails = allemails;
     return this;
   }
 
-  public AddressData withEmail1(String email1) {
+  public ContactData withEmail1(String email1) {
     this.email1 = email1;
     return this;
   }
 
-  public AddressData withEmail2(String email2) {
+  public ContactData withEmail2(String email2) {
     this.email2 = email2;
     return this;
   }
 
-  public AddressData withEmail3(String email3) {
+  public ContactData withEmail3(String email3) {
     this.email3 = email3;
     return this;
   }
 
-  public AddressData withPhoto(File photo) {
+  public ContactData withPhoto(File photo) {
     this.photo = photo;
     return this;
+  }
+
+  public ContactData withSecondphone(String secondphone) {
+    this.secondphone = secondphone;
+    return this;
+  }
+
+  public String getSecondphone() {
+    return secondphone;
   }
 
   public File getPhoto() {
@@ -189,7 +199,7 @@ public class AddressData {
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    AddressData that = (AddressData) o;
+    ContactData that = (ContactData) o;
     return id == that.id && Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname);
   }
 
