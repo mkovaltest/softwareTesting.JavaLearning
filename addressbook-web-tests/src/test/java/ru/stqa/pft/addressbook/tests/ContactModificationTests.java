@@ -19,16 +19,16 @@ public class ContactModificationTests extends TestBase{
   }
 
   @Test (enabled = true)
-  public void testAddressModification() {
+  public void testContactModification() {
     Contacts before = app.contact().all();
     ContactData modifiedContact = before.iterator().next();
-    ContactData address = new ContactData()
+    ContactData contact = new ContactData()
             .withId(modifiedContact.getId()).withFirstname("Michael_edited").withLastname("Koval_edited").withNickname("Hors68_edited").withTitle("tester_edited")
             .withCompany("Cinimex_edited").withAddress("Voronej_edited").withMobilephone("123_edited").withWorkphone("456_edited").withEmail("mail_edited@mail.ru");
-    app.contact().modify(address);
+    app.contact().modify(contact);
     app.goTo().gotoHomePage();
     Contacts after = app.contact().all();
     assertThat(after.size(), equalTo(before.size()));
-    assertThat(after, equalTo(before.without(modifiedContact).withAdded(address)));
+    assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
   }
 }

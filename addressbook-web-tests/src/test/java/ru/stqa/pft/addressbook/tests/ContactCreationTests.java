@@ -12,18 +12,18 @@ import static org.hamcrest.MatcherAssert.*;
 public class ContactCreationTests extends TestBase {
 
   @Test (enabled = true)
-  public void testAddressCreation() {
+  public void testContactCreation() {
     Contacts before = app.contact().all();
     File photo = new File("src/test/resources/stru.png");
-    ContactData address = new ContactData()
-            .withFirstname("Michael").withLastname("Koval").withNickname("Hors68").withTitle("tester").withCompany("Cinimex").withAddress("Voronej")
+    ContactData contact = new ContactData()
+            .withFirstname("Michael").withLastname("zzz").withNickname("Hors68").withTitle("tester").withCompany("Cinimex").withAddress("Voronej")
             .withMobilephone("123").withWorkphone("456").withEmail("mail@mail.ru").withGroup("test1").withPhoto(photo);
-    app.contact().createContact(address);
+    app.contact().createContact(contact);
     app.goTo().gotoHomePage();
     Contacts after = app.contact().all();
     assertThat(after.size(), equalTo(before.size() + 1));
     assertThat(after, equalTo(
-            before.withAdded(address.withId(after.stream().mapToInt((a) -> a.getId()).max().getAsInt()))));
+            before.withAdded(contact.withId(after.stream().mapToInt((a) -> a.getId()).max().getAsInt()))));
   }
 
   @Test (enabled = false)
