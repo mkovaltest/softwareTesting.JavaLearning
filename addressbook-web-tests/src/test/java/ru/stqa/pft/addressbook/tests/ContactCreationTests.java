@@ -16,7 +16,7 @@ public class ContactCreationTests extends TestBase {
     Contacts before = app.contact().all();
     File photo = new File("src/test/resources/stru.png");
     ContactData contact = new ContactData()
-            .withFirstname("Michael").withLastname("zzz").withNickname("Hors68").withTitle("tester").withCompany("Cinimex").withAddress("Voronej")
+            .withFirstname("Michael").withLastname("Koval").withNickname("Hors68").withTitle("tester").withCompany("Cinimex").withAddress("Voronej")
             .withMobilephone("123").withWorkphone("456").withEmail("mail@mail.ru").withGroup("test1").withPhoto(photo);
     app.contact().createContact(contact);
     app.goTo().gotoHomePage();
