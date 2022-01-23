@@ -2,10 +2,12 @@ package ru.stqa.pft.addressbook.tests;
 
 import com.google.gson.Gson;
 import org.openqa.selenium.json.TypeToken;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
@@ -20,6 +22,14 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 
 public class ContactCreationTests extends TestBase {
+
+  @BeforeMethod
+  public void ensurePreconditions() {
+    if (app.db().groups().size() == 0) {
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("test1"));
+    }
+  }
 
   @DataProvider
   public Iterator<Object[]> validContactsFromJson() throws IOException {
@@ -42,7 +52,7 @@ public class ContactCreationTests extends TestBase {
     Groups groups = app.db().groups();
     Contacts before = app.db().contacts();
     File photo = new File("src/test/resources/stru.png");
-    contact.withPhoto(photo).inGroup(groups.iterator().next()); //to do: Реализовать проверку наличия групп
+    contact.withPhoto(photo).inGroup(groups.iterator().next());
     app.contact().createContact(contact);
     app.goTo().gotoHomePage();
     Contacts after = app.db().contacts();

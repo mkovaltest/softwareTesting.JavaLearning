@@ -54,6 +54,10 @@ public class ContactHelper extends HelperBase{
     click(By.xpath("//input[@value='Delete']"));
   }
 
+  public void addSelectedContact() {
+    click(By.name("to_group"));
+  }
+
   public void closeContactDeletionAlert() {
     wd.switchTo().alert().accept();
   }
@@ -64,6 +68,22 @@ public class ContactHelper extends HelperBase{
 
   public void submitContactModification() {
     click(By.name("update"));
+  }
+
+  private void removeContactFromGroup() {
+    click(By.name("remove"));
+  }
+
+  public void submitContactAddition() {
+    click(By.name("add"));
+  }
+
+  public void selectGroupForContactAddition(GroupData group) {
+    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(group.getName());
+  }
+
+  private void selectGroupForContactDeletionById(int id) {
+    new Select(wd.findElement(By.name("group"))).selectByValue(String.valueOf(id));
   }
 
   public void createContact(ContactData contact) {
@@ -79,16 +99,29 @@ public class ContactHelper extends HelperBase{
     submitContactCreation();
   }
 
-  public void modify(ContactData address) {
-    modifyContactById(address.getId());
-    fillContactForm(address, false);
+  public void modify(ContactData contact) {
+    modifyContactById(contact.getId());
+    fillContactForm(contact, false);
     submitContactModification();
   }
 
-  public void delete(ContactData address) {
-    selectContactById(address.getId());
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
     deleteSelectedContact();
     closeContactDeletionAlert();
+  }
+
+  public void addGroupToContact(ContactData contact, GroupData group) {
+    selectContactById(contact.getId());
+    addSelectedContact();
+    selectGroupForContactAddition(group);
+    submitContactAddition();
+  }
+
+  public void deleteGroupFromContact(ContactData contact, GroupData deletedGroup) {
+    selectGroupForContactDeletionById(deletedGroup.getId());
+    selectContactById(contact.getId());
+    removeContactFromGroup();
   }
 
   public boolean isThereAContact() {

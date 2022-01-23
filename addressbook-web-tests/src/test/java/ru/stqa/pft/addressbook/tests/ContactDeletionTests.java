@@ -5,12 +5,17 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
 public class ContactDeletionTests extends TestBase{
 
   @BeforeMethod
   public void ensurePreconditions() {
+    if (app.db().groups().size() == 0) {
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("test1"));
+    }
     Groups groups = app.db().groups();
     if (app.db().contacts().size() == 0) {
       app.contact().createContact(new ContactData()
@@ -19,7 +24,7 @@ public class ContactDeletionTests extends TestBase{
     }
   }
 
-  @Test (enabled = true)
+  @Test
   public void testContactDeletion() {
     Contacts before = app.db().contacts();
     ContactData deletedContact = before.iterator().next();
