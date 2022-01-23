@@ -5,6 +5,8 @@
 /sandbox/build/
 /addressbook-web-tests/out/
 /addressbook-web-tests/build/
+/mantis-tests/out/
+/mantis-tests/build/
 
 # Ignore Gradle GUI config
 gradle-app.setting
