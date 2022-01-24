@@ -5,8 +5,9 @@ repositories {
 }
 
 dependencies {
-    testImplementation group: 'org.testng', name: 'testng', version: '7.5'
-    implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.9'
-    implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
-    implementation group: 'org.apache.httpcomponents', name: 'fluent-hc', version: '4.5.13'
+    implementation 'org.testng:testng:7.4.0'
+    implementation 'com.google.code.gson:gson:2.6.1'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+    implementation 'org.apache.httpcomponents:fluent-hc:4.5.13'
+    implementation 'com.jayway.restassured:rest-assured:2.9.0'
 }
