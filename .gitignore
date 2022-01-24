@@ -9,6 +9,8 @@
 /mantis-tests/build/
 /soap-sample/out/
 /soap-sample/build/
+/rest-sample/out/
+/rest-sample/build/
 
 # Ignore Gradle GUI config
 gradle-app.setting
