@@ -1,7 +1,5 @@
 package ru.stqa.pft.mantis.tests;
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -14,8 +12,6 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.*;
 import static org.testng.Assert.assertTrue;
 
 public class ChangePasswordTests extends TestBase{
