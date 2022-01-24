@@ -15,10 +15,23 @@ public class RegistrationHelper extends HelperBase{
     click(By.cssSelector("input[value='Signup']"));
   }
 
+  public void login(String username, String password) {
+    wd.get(app.getProperty("web.baseUrl") + "/login_page.php");
+    type(By.name("username"), username);
+    type(By.name("password"), password);
+    click(By.cssSelector("input[value='Login']"));
+  }
+
   public void finish(String confirmationLink, String password) {
     wd.get(confirmationLink);
     type(By.name("password"), password);
     type(By.name("password_confirm"), password);
     click(By.cssSelector("input[value='Update User']"));
+  }
+
+  public void resetPassword(String user) {
+    wd.get(app.getProperty("web.baseUrl") + "/manage_user_page.php");
+    click(By.linkText(user));
+    click(By.cssSelector("input[value='Reset Password']"));
   }
 }
