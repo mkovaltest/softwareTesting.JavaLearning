@@ -7,6 +7,8 @@
 /addressbook-web-tests/build/
 /mantis-tests/out/
 /mantis-tests/build/
+/soap-sample/out/
+/soap-sample/build/
 
 # Ignore Gradle GUI config
 gradle-app.setting
