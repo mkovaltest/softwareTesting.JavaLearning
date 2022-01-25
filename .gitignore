@@ -11,6 +11,8 @@
 /soap-sample/build/
 /rest-sample/out/
 /rest-sample/build/
+/github-sample/out/
+/github-sample/build/
 
 # Ignore Gradle GUI config
 gradle-app.setting
