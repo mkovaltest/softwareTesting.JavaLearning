@@ -1,6 +1,5 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -77,5 +76,9 @@ public class ApplicationManager {
 
   public DbHelper db() {
     return dbHelper;
+  }
+
+  public Properties getProperties() {
+    return properties;
   }
 }

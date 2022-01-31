@@ -7,6 +7,8 @@ import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
+import java.io.File;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -18,11 +20,16 @@ public class ContactDeleteFromGroupTests extends TestBase{
       app.goTo().groupPage();
       app.group().create(new GroupData().withName("test1"));
     }
+    Groups groups = app.db().groups();
     if (app.db().contacts().size() == 0) {
       app.goTo().gotoHomePage();
       app.contact().createContact(new ContactData()
-              .withFirstname("Michael").withLastname("Koval").withNickname("Hors68").withTitle("tester").withCompany("Cinimex").withAddress("Voronej")
-              .withMobilephone("123").withWorkphone("456").withEmail("mail@mail.ru"));
+              .withFirstname("Michael").withLastname("Koval").withNickname("Hors68")
+              .withTitle("tester").withCompany("Cinimex").withAddress("Voronej")
+              .withMobilephone("123").withWorkphone("456").withHomephone("789").withSecondphone("777")
+              .withEmail("mail1@mail.ru").withEmail2("mail2@mail.ru").withEmail3("mail3@mail.ru")
+              .withPhoto(new File(app.getProperties().getProperty("addressbook.photo")))
+              .inGroup(groups.iterator().next()));
     }
   }
 
