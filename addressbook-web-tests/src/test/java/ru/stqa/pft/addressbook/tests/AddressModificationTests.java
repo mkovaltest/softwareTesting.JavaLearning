@@ -16,14 +16,13 @@ public class AddressModificationTests extends TestBase{
     }
     List<AddressData> before = app.getContactHelper().getContactList();
     app.getContactHelper().initAddressModification(before.size() - 1);
-    AddressData address = new AddressData("Michael_edited", "Koval_edited", "Hors68_edited", "tester_edited", "Cinimex_edited", "Voronej_edited", "123_edited", "456_edited", "mail_edited@mail.ru", null);
+    AddressData address = new AddressData(before.get(before.size() - 1).getId(),"Michael_edited", "Koval_edited", "Hors68_edited", "tester_edited", "Cinimex_edited", "Voronej_edited", "123_edited", "456_edited", "mail_edited@mail.ru", null);
     app.getContactHelper().fillAddressForm(address, false);
     app.getContactHelper().submitAddressModification();
     app.goTo().gotoHomePage();
     List<AddressData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size());
     before.remove(before.size() - 1);
-    address.setId(app.getContactHelper().findMinId());
     before.add(address);
     Comparator<AddressData> byId = Comparator.comparingInt(AddressData::getId);
     before.sort(byId);
