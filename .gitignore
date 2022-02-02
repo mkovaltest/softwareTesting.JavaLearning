@@ -5,6 +5,7 @@
 /sandbox/build/
 /addressbook-web-tests/out/
 /addressbook-web-tests/build/
+/addressbook-web-tests/allure-report/
 /mantis-tests/out/
 /mantis-tests/build/
 /soap-sample/out/
