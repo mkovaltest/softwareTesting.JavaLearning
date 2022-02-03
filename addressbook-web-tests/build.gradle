@@ -21,6 +21,8 @@ dependencies {
     agent "org.aspectj:aspectjweaver:1.8.0"
     compile "ru.yandex.qatools.allure:allure-testng-adaptor:1.4.0.RC4"
     implementation group: 'org.robotframework', name: 'robotframework', version: '4.1.2'
+    implementation group: 'io.cucumber', name: 'cucumber-java', version: '7.2.3'
+    implementation group: 'io.cucumber', name: 'cucumber-testng', version: '7.2.3'
 
 
     task testGroups (type: Test) {
